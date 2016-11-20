@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+ 	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+		
+		<title>Smart Mirror</title>
+		
+    <!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="assets/bootstrap/bootstrap4-alpha3.min.css">
+		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/bootstrap/js/bootstrap.min.js">
+		<link rel="stylesheet" href="jQRangeSlider/css/iThing.css">
+		<!-- Google Font Roboto -->
+		<link rel="stylesheet" href="assets/fonts/font-roboto.css">
+		
+		<style>	
+			body {
+				background-color: #2a2a2b;
+				color: #ffffff;
+				font-family: "Roboto", Helvetica, Arial, sans-serif;
+				font-size: 16px;
+				line-height: 1.5;
+				padding-bottom: 3.5rem;
+				padding-top: 3.5rem;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				font-weight: 300;
+			}
+
+			hr {
+				border-top: 1px solid #727273;
+				margin-bottom: 2rem;
+				margin-top: 2rem;
+			}
+			
+			#revenue-tag {
+				border-radius: 0px !important;
+				font-size: inherit !important;
+				font-weight: inherit !important;
+			}
+
+			.align-center {
+				text-align: center;
+			}
+
+			.card {
+				background-color: transparent;
+				border: none;
+				margin-bottom: 0px;
+			}
+  			#selectable .ui-selecting { background: #FECA40; }
+  			#selectable .ui-selected { background: #F39814; color: white; }
+  			#selectable { list-style-type: none; margin: 0; padding-left: : 2%;}
+  			#selectable li { font-size: 20px; margin: 3px; padding-left: 3%; float: left;}
+		</style>
+		
+		<!-- Scripts -->
+		<script src="assets/jquery/jquery-3.1.1.min.js"></script>
+		<script src="assets/jquery/jquery-3.1.1.js"></script>
+		<script src="assets/jquery-ui/jquery-ui.js"></script>
+		<script src="assets/jquery-ui/jquery-ui.min.js"></script>
+		<script src="jQRangeSlider/jQDateRangeSlider-min.js"></script>
+		<script src="assets/tether/tether.min.js"></script>
+		<script src="assets/bootstrap/bootstrap4-alpha3.min.js"></script>
+		<script src="assets/jquery.scrollspeed/jquery.scrollspeed.min.js"></script>
+		<script src="assets/jquery.inview/jquery.inview.min.js"></script>
+		<script src="Highcharts/code/highcharts.js"></script>
+		<script src="Highcharts/code/modules/data.js"></script>
+		<script src="Highcharts/code/modules/drilldown.js"></script>
+		<script src="Highcharts/code/themes/dark-unica.js"></script>
+		
+		<script>
+			$(function () {
+				console.log($("#slider"));
+				$("#slider").dateRangeSlider({
+					bounds: {min: new Date(2016, 9, 1), max: new Date(2016, 10, 31)},
+    				defaultValues: {min: new Date(2016, 10, 16), max: new Date(2016, 10, 18)}
+				});
+				//document.getElementById('datePicker').valueAsDate = new Date();
+
+			    Highcharts.chart('BT_container', {
+			    	credits: {
+			    		enabled:false
+			    	},
+			        chart: {
+			            type: 'column'
+			        },
+			        title: {
+			            text: ''
+			        },
+			        subtitle: {
+			            text: ''
+			        },
+			        xAxis: {
+			            type: 'category',
+			            labels: {
+			                rotation: -45,
+			                style: {
+			                    fontSize: '13px',
+			                    fontFamily: 'Verdana, sans-serif'
+			                }
+			            }
+			        },
+			        yAxis: {
+			            min: 0,
+			            title: {
+			                text: ''
+			            }
+			        },
+			        legend: {
+			            enabled: false
+			        },
+			        tooltip: {
+			            pointFormat: 'Body Temperature: <b>{point.y:.1f} ℃</b>'
+			        },
+			        series: [{
+			            name: 'Population',
+			            data: [
+			                ['16 Nov 2016', 35],
+			                ['17 Nov 2016', 36],
+			                ['18 Nov 2016', 35]
+			            ],
+			            dataLabels: {
+			                enabled: true,
+			                rotation: -90,
+			                color: '#FFFFFF',
+			                align: 'right',
+			                format: '{point.y:.1f}', // one decimal
+			                y: 10, // 10 pixels down from the top
+			                style: {
+			                    fontSize: '13px',
+			                    fontFamily: 'Verdana, sans-serif'
+			                }
+			            }
+			        }]
+			    });
+			    Highcharts.chart('BP_container', {
+			        chart: {
+			            type: 'area'
+			        },
+			        title: {
+			            text: ''
+			        },
+			        xAxis: {
+			            categories: ['16 Nov 2016', '17 Nov 2016', '18 Nov 2016']
+			        },
+			        credits: {
+			            enabled: false
+			        },
+			        series: [{
+			            name: 'Systolic',
+			            data: [120, 130, 115]
+			        }, {
+			            name: 'diastolic',
+			            data: [80, 90, 85]
+			        }]
+			    });
+			    Highcharts.chart('BST_container', {
+			        chart: {
+			            type: 'area'
+			        },
+			        title: {
+			            text: ''
+			        },
+			        xAxis: {
+			            categories: ['16 Nov 2016', '17 Nov 2016', '18 Nov 2016']
+			        },
+			        credits: {
+			            enabled: false
+			        },
+			        series: [{
+			            name: 'mg/dL',
+			            data: [100, 90, 110]
+			        }]
+			    });
+			    Highcharts.chart('PR_container', {
+			        chart: {
+			            type: 'area'
+			        },
+			        title: {
+			            text: ''
+			        },
+			        xAxis: {
+			            categories: ['16 Nov 2016', '17 Nov 2016', '18 Nov 2016']
+			        },
+			        credits: {
+			            enabled: false
+			        },
+			        series: [{
+			            name: 'bpm',
+			            data: [74, 76, 70]
+			        }]
+			    });
+			});
+	
+		</script>
+		
+  </head>
+  <body>
+		<div class="container">
+			<h1>Health Information</h1>
+			<div id="slider"></div>
+
+			<br>
+
+			<hr class="m-t-2">
+
+			<div class="row">
+				<div class="col-xs-6">
+					<h3>BT(Body Temperature) -℃</h3>
+					<div id="BT_container"></div>
+				</div>
+
+				<div class="col-xs-6">
+					<h3>BP(Blood Pressure - mmHg</h3>
+					<div id="BP_container"></div>
+				</div>
+			</div>
+
+			<hr class="m-t-2">
+
+			<div class="row">
+				<div class="col-xs-6">
+					<h3>BST(Blood Sugar Test) -mg/dL</h3>
+					<div id="BST_container"></div>
+				</div>
+
+				<div class="col-xs-6">
+					<h3>PR(Pulse Rate) - bpm</h3>
+					<div id="PR_container"></div>
+				</div>
+			</div>
+
+			<hr class="m-t-2">
+
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+				    	<tr>
+				    		<th></th>
+				    		<th>Date</th>
+				    		<th>Code</th>
+				    		<th>Name</th>
+				    		<th>Note</th>
+				    	</tr>
+			    	</thead>
+			    	<tbody>
+			      		<tr>
+			        		<td>1</td>
+			        		<td>11/16/2016 10:00:00</td>
+			        		<td>002</td>
+			        		<td>감기</td>
+			        		<td>열 39도</td>
+			      		</tr>
+			    	</tbody>
+			  	</table>
+			</div>
+			
+		</div> <!-- container -->
+		
+	</body>
+</html>
